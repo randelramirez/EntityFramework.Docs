@@ -4,15 +4,15 @@ author: bricelam
 ms.author: bricelam
 ms.date: 11/08/2017
 ---
-Migrations with Multiple Providers
-==================================
+# Migrations with Multiple Providers
+
 The [EF Core Tools][1] only scaffold migrations for the active provider. Sometimes, however, you may want to use more
 than one provider (for example Microsoft SQL Server and SQLite) with your DbContext. There are two ways to handle
 this with Migrations. You can maintain two sets of migrations--one for each provider--or merge them into a single set
 that can work on both.
 
-Two migration sets
-------------------
+## Two migration sets
+
 In the first approach, you generate two migrations for each model change.
 
 One way to do this is to put each migration set [in a separate assembly][2] and manually switch the active provider (and
@@ -35,21 +35,28 @@ class MySqliteDbContext : MyDbContext
 
 When adding new migration, specify the context types.
 
+## [.NET Core CLI](#tab/dotnet-core-cli)
+
+``` console
+dotnet ef migrations add InitialCreate --context MyDbContext --output-dir Migrations/SqlServerMigrations
+dotnet ef migrations add InitialCreate --context MySqliteDbContext --output-dir Migrations/SqliteMigrations
+```
+
+## [Visual Studio](#tab/vs)
+
 ``` powershell
 Add-Migration InitialCreate -Context MyDbContext -OutputDir Migrations\SqlServerMigrations
 Add-Migration InitialCreate -Context MySqliteDbContext -OutputDir Migrations\SqliteMigrations
 ```
-``` Console
-dotnet ef migrations add InitialCreate --context MyDbContext --output-dir Migrations/SqlServerMigrations
-dotnet ef migrations add InitialCreate --context MySqliteDbContext --output-dir Migrations/SqliteMigrations
-```
+
+***
 
 > [!TIP]
 > You don't need to specify the output directory for subsequent migrations since they are created as siblings to the
 > last one.
 
-One migration set
------------------
+## One migration set
+
 If you don't like having two sets of migrations, you can manually combine them into a single set that can be applied to
 both providers.
 
@@ -73,7 +80,6 @@ if (migrationBuilder.ActiveProvider == "Microsoft.EntityFrameworkCore.SqlServer"
         name: "EntityFrameworkHiLoSequence");
 }
 ```
-
 
   [1]: ../../miscellaneous/cli/index.md
   [2]: projects.md

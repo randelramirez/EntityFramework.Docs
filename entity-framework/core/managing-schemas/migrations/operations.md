@@ -5,8 +5,8 @@ ms.author: bricelam
 ms.date: 11/07/2017
 uid: core/managing-schemas/migrations/operations
 ---
-Custom Migrations Operations
-============================
+# Custom Migrations Operations
+
 The MigrationBuilder API allows you to perform many different kinds of operations during a migration, but it's far from
 exhaustive. However, the API is also extensible allowing you to define your own operations. There are two ways to extend
 the API: Using the `Sql()` method, or by defining custom `MigrationOperation` objects.
@@ -18,8 +18,8 @@ migrations, we want to enable writing the following code:
 migrationBuilder.CreateUser("SQLUser1", "Password");
 ```
 
-Using MigrationBuilder.Sql()
-----------------------------
+## Using MigrationBuilder.Sql()
+
 The easiest way to implement a custom operation is to define an extension method that calls `MigrationBuilder.Sql()`.
 Here is an example that generates the appropriate Transact-SQL.
 
@@ -57,8 +57,8 @@ static MigrationBuilder CreateUser(
 
 This approach only works if you know every provider where your custom operation will be applied.
 
-Using a MigrationOperation
----------------------------
+## Using a MigrationOperation
+
 To decouple the custom operation from the SQL, you can define your own `MigrationOperation` to represent it. The
 operation is then passed to the provider so it can determine the appropriate SQL to generate.
 

@@ -5,8 +5,8 @@ ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/projects
 ---
-Using a Separate Project
-========================
+# Using a Separate Project
+
 You may want to store your migrations in a different assembly than the one containing your `DbContext`. You can also
 use this strategy to maintain multiple sets of migrations, for example, one for development and another for
 release-to-release upgrades.
@@ -41,9 +41,16 @@ To do this...
 
 If you did everything correctly, you should be able to add new migrations to the project.
 
+## [.NET Core CLI](#tab/dotnet-core-cli)
+
+``` console
+dotnet ef migrations add NewMigration --project MyApp.Migrations
+```
+
+## [Visual Studio](#tab/vs)
+
 ``` powershell
 Add-Migration NewMigration -Project MyApp.Migrations
 ```
-``` Console
-dotnet ef migrations add NewMigration --project MyApp.Migrations
-```
+
+***

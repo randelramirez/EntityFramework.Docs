@@ -21,6 +21,7 @@ The procedures for installing and updating the tools differ between ASP.NET Core
 The tools are automatically included in an ASP.NET Core 2.1+ project because the `Microsoft.EntityFrameworkCore.Tools` package is included in the [Microsoft.AspNetCore.App metapackage](/aspnet/core/fundamentals/metapackage-app).
 
 Therefore, you don't have to do anything to install the tools, but you do have to:
+
 * Restore packages before using the tools in a new project.
 * Install a package to update the tools to a newer version.
 
@@ -41,6 +42,7 @@ Update the tools when you get a message like the following example:
 > The EF Core tools version '2.1.1-rtm-30846' is older than that of the runtime '2.1.3-rtm-32065'. Update the tools for the latest features and bug fixes.
 
 To update the tools:
+
 * Install the latest .NET Core SDK.
 * Update Visual Studio to the latest version.
 * Edit the *.csproj* file so that it includes a package reference to the latest tools package, as shown earlier.
@@ -90,6 +92,7 @@ SHORT DESCRIPTION
 ## Using the tools
 
 Before using the tools:
+
 * Understand the difference between target and startup project.
 * Learn how to use the tools with .NET Standard class libraries.
 * For ASP.NET Core projects, set the environment.
@@ -98,9 +101,9 @@ Before using the tools:
 
 The commands refer to a *project* and a *startup project*.
 
-* The *project* is also known as the *target project* because it's where the commands add or remove files. By default, the **Default project** selected in **Package Manager Console** is the target project. You can specify a different project as target project by using the <nobr>`--project`</nobr> option.
+* The *project* is also known as the *target project* because it's where the commands add or remove files. By default, the **Default project** selected in **Package Manager Console** is the target project. You can specify a different project as target project by using the `--project` option.
 
-* The *startup project* is the one that the tools build and run. The tools have to execute application code at design time to get information about the project, such as the database connection string and the configuration of the model. By default, the **Startup Project** in **Solution Explorer** is the startup project. You can specify a different project as startup project by using the <nobr>`--startup-project`</nobr> option.
+* The *startup project* is the one that the tools build and run. The tools have to execute application code at design time to get information about the project, such as the database connection string and the configuration of the model. By default, the **Startup Project** in **Solution Explorer** is the startup project. You can specify a different project as startup project by using the `--startup-project` option.
 
 The startup project and target project are often the same project. A typical scenario where they are separate projects is when:
 
@@ -143,8 +146,8 @@ Parameters:
 
 | Parameter                         | Description                                                                                                             |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Name \<String><nobr>       | The name of the migration. This is a positional parameter and is required.                                              |
-| <nobr>-OutputDir \<String></nobr> | The directory (and sub-namespace) to use. Paths are relative to the target project directory. Defaults to "Migrations". |
+| -Name \<String>                   | The name of the migration. This is a positional parameter and is required.                                              |
+| -OutputDir \<String>              | The directory (and sub-namespace) to use. Paths are relative to the target project directory. Defaults to "Migrations". |
 
 ## Drop-Database
 
@@ -178,15 +181,15 @@ Parameters:
 
 | Parameter                          | Description                                                                                                                                                                                                                                                             |
 |:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Connection \<String></nobr> | The connection string to the database. For ASP.NET Core 2.x projects, the value can be *name=\<name of connection string>*. In that case the name comes from the configuration sources that are set up for the project. This is a positional parameter and is required. |
-| <nobr>-Provider \<String></nobr>   | The provider to use. Typically this is the name of the NuGet package, for example: `Microsoft.EntityFrameworkCore.SqlServer`. This is a positional parameter and is required.                                                                                           |
+| -Connection \<String>              | The connection string to the database. For ASP.NET Core 2.x projects, the value can be *name=\<name of connection string>*. In that case the name comes from the configuration sources that are set up for the project. This is a positional parameter and is required.|
+| -Provider \<String>                | The provider to use. Typically this is the name of the NuGet package, for example: `Microsoft.EntityFrameworkCore.SqlServer`. This is a positional parameter and is required.                                                                                         |
 | -OutputDir \<String>               | The directory to put files in. Paths are relative to the project directory.                                                                                                                                                                                             |
 | -ContextDir \<String>              | The directory to put the `DbContext` file in. Paths are relative to the project directory.                                                                                                                                                                              |
 | -Context \<String>                 | The name of the `DbContext` class to generate.                                                                                                                                                                                                                          |
 | -Schemas \<String[]>               | The schemas of tables to generate entity types for. If this parameter is omitted, all schemas are included.                                                                                                                                                             |
 | -Tables \<String[]>                | The tables to generate entity types for. If this parameter is omitted, all tables are included.                                                                                                                                                                         |
 | -DataAnnotations                   | Use attributes to configure the model (where possible). If this parameter is omitted, only the fluent API is used.                                                                                                                                                      |
-| -UseDatabaseNames                  | Use table and column names exactly as they appear in the database. If this parameter is omitted, database names are changed to more closely conform to C# name style conventions.                                                                                       |
+| -UseDatabaseNames                  | Use table and column names exactly as they appear in the database. If this parameter is omitted, database names are changed to more closely conform to C# name style conventions.                                                                                      |
 | -Force                             | Overwrite existing files.                                                                                                                                                                                                                                               |
 
 Example:
@@ -211,7 +214,7 @@ Parameters:
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | *-From* \<String>        | The starting migration. Migrations may be identified by name or by ID. The number 0 is a special case that means *before the first migration*. Defaults to 0.                                                              |
 | *-To* \<String>          | The ending migration. Defaults to the last migration.                                                                                                                                                                      |
-| <nobr>-Idempotent</nobr> | Generate a script that can be used on a database at any migration.                                                                                                                                                         |
+| -Idempotent              | Generate a script that can be used on a database at any migration.                                                                                                                                                         |
 | -Output \<String>        | The file to write the result to. IF this parameter is omitted, the file is created with a generated name in the same folder as the app's runtime files are created, for example: */obj/Debug/netcoreapp2.1/ghbkztfz.sql/*. |
 
 > [!TIP]
@@ -235,7 +238,7 @@ Updates the database to the last migration or to a specified migration.
 
 | Parameter                           | Description                                                                                                                                                                                                                                                     |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>*-Migration* \<String></nobr> | The target migration. Migrations may be identified by name or by ID. The number 0 is a special case that means *before the first migration* and causes all migrations to be reverted. If no migration is specified, the command defaults to the last migration. |
+| *-Migration* \<String>              | The target migration. Migrations may be identified by name or by ID. The number 0 is a special case that means *before the first migration* and causes all migrations to be reverted. If no migration is specified, the command defaults to the last migration. |
 
 > [!TIP]
 > The Migration parameter supports tab-expansion.
